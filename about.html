@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About Us</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        .team-member {
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .team-member img {
+            width: 100%;
+            height: auto;
+        }
+        .team-member h5 {
+            margin-top: 15px;
+        }
+        .team-member p {
+            padding: 0 15px 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-4">
+        <h1 class="text-center">About Us</h1>
+        <p class="text-center">We are a team of passionate individuals committed to improving health and wellness through innovative solutions.</p>
+        
+        <div class="row">
+            <!-- Team Member 1 -->
+            <div class="col-md-3">
+                <div class="team-member">
+                    <img src="{{ url_for('static', filename='images/member1.jpg') }}" alt="Team Member 1">
+                    <div class="p-3 text-center">
+                        <h5>Jane Doe</h5>
+                        <p>Health Expert</p>
+                        <p>Jane is a certified health expert with over 10 years of experience in the field.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Team Member 2 -->
+            <div class="col-md-3">
+                <div class="team-member">
+                    <img src="{{ url_for('static', filename='images/member2.jpg') }}" alt="Team Member 2">
+                    <div class="p-3 text-center">
+                        <h5>John Smith</h5>
+                        <p>Nutritionist</p>
+                        <p>John specializes in creating personalized nutrition plans to enhance well-being.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Team Member 3 -->
+            <div class="col-md-3">
+                <div class="team-member">
+                    <img src="{{ url_for('static', filename='images/member3.jpg') }}" alt="Team Member 3">
+                    <div class="p-3 text-center">
+                        <h5>Emma Johnson</h5>
+                        <p>Fitness Trainer</p>
+                        <p>Emma is a fitness trainer who motivates individuals to achieve their fitness goals.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Team Member 4 -->
+            <div class="col-md-3">
+                <div class="team-member">
+                    <img src="{{ url_for('static', filename='images/member4.jpg') }}" alt="Team Member 4">
+                    <div class="p-3 text-center">
+                        <h5>Mark Wilson</h5>
+                        <p>Yoga Instructor</p>
+                        <p>Mark is a dedicated yoga instructor with a passion for holistic wellness and mindfulness.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
