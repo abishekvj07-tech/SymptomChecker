@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SymptomSense - Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* Global Styles */
+        body {
+            background-color: #e8f1f5;
+            font-family: Arial, sans-serif;
+            color: #343a40;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #333;
+        }
+        .navbar-brand, .nav-link {
+            color: #ffffff !important;
+            font-weight: bold;
+        }
+
+        /* Main Title */
+        h1 {
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        /* Container Styles */
+        .container {
+            background: #fff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Symptom Input Styling */
+        .form-control {
+            height: 50px;
+            font-size: 16px;
+        }
+
+        /* Button Styling */
+        .btn-danger {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-danger:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        /* Modal and Toggle Button Styling */
+        .toggle-button {
+            background: #f5f5f5;
+            color: #333;
+            border: 1px solid #ddd;
+            padding: 12px 20px;
+            font-weight: bold;
+            border-radius: 5px;
+            margin: 5px;
+            transition: 0.3s;
+        }
+        .toggle-button:hover {
+            background: #ddd;
+            color: #000;
+        }
+
+        .modal-header {
+            background-color: #020606;
+            color: white;
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        /* Additional Content Styles */
+        .faq {
+            margin-top: 40px;
+            background: #f7f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .faq h5 {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">SymptomSense</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/blog">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Welcome to SymptomSense</h1>
+        <p class="lead text-center mb-5">Your one-stop solution for accurate health insights powered by AI. Enter your symptoms below to get started.</p>
+
+        <!-- Symptom Input Form -->
+        <form action="/predict" method="post">
+            <div class="form-group mb-4">
+                <label for="symptoms">Enter Your Symptoms:</label>
+                <input type="text" class="form-control" id="symptoms" name="symptoms" placeholder="e.g., headache, fatigue, sore throat">
+            </div>
+
+            {% if message %}
+                <p>{{ message }}</p>
+            {% endif %}
+            
+            <button type="submit" class="btn btn-danger btn-lg w-100 mb-4">Analyze Symptoms</button>
+        </form>
+    </div>
+
+    <!-- AI Prediction Results -->
+    {% if predicted_disease %}
+        <div class="container mt-5">
+            <h2 class="text-center mb-4">Your AI-Powered Results</h2>
+            <div class="d-flex justify-content-center flex-wrap">
+                <button class="toggle-button" data-bs-toggle="modal" data-bs-target="#diseaseModal">Disease</button>
+                <button class="toggle-button" data-bs-toggle="modal" data-bs-target="#descriptionModal">Description</button>
+                <button class="toggle-button" data-bs-toggle="modal" data-bs-target="#precautionModal">Precautions</button>
+                <button class="toggle-button" data-bs-toggle="modal" data-bs-target="#medicationsModal">Medications</button>
+                <button class="toggle-button" data-bs-toggle="modal" data-bs-target="#workoutsModal">Workouts</button>
+                <button class="toggle-button" data-bs-toggle="modal" data-bs-target="#dietsModal">Diet Plans</button>
+            </div>
+        </div>
+    {% endif %}
+
+    <!-- Modal Templates -->
+    {% for modal in ["disease", "description", "precaution", "medications", "workouts", "diets"] %}
+        <div class="modal fade" id="{{ modal }}Modal" tabindex="-1" aria-labelledby="{{ modal }}ModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="{{ modal }}ModalLabel">{{ modal.capitalize() }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        {% if modal == "disease" %}
+                            <p>{{ predicted_disease }}</p>
+                        {% elif modal == "description" %}
+                            <p>{{ dis_des }}</p>
+                        {% elif modal == "precaution" %}
+                            <ul>{% for item in my_precautions %}<li>{{ item }}</li>{% endfor %}</ul>
+                        {% elif modal == "medications" %}
+                            <ul>{% for item in medications %}<li>{{ item }}</li>{% endfor %}</ul>
+                        {% elif modal == "workouts" %}
+                            <ul>{% for item in workout %}<li>{{ item }}</li>{% endfor %}</ul>
+                        {% elif modal == "diets" %}
+                            <ul>{% for item in my_diet %}<li>{{ item }}</li>{% endfor %}</ul>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    <!-- FAQ Section -->
+    <div class="container my-5 faq">
+        <h2 class="text-center mb-4">Frequently Asked Questions</h2>
+        <h5>What is SymptomSense?</h5>
+        <p>SymptomSense is a health insights platform that uses AI to analyze your symptoms and provide potential health conditions.</p>
+        
+        <h5>How do I use the platform?</h5>
+        <p>Simply enter your symptoms in the input box and click "Analyze Symptoms" to receive tailored health insights.</p>
+
+        <h5>Is my data secure?</h5>
+        <p>Yes, we prioritize user privacy and ensure all data is securely stored and processed.</p>
+
+        <h5>Can I get personalized advice?</h5>
+        <p>While SymptomSense provides insights, it is always recommended to consult a healthcare professional for personalized advice.</p>
+    </div>
+
+    <!-- Newsletter Subscription Section -->
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Subscribe to Our Newsletter</h2>
+        <p class="text-center mb-4">Stay updated with the latest health tips and insights. Enter your email below:</p>
+        <form action="/subscribe" method="post">
+            <div class="form-group mb-4">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <button type="submit" class="btn btn-danger btn-lg w-100 mb-4">Subscribe</button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© 2024 SymptomSense - Your Health, Our Priority</p>
+        <p>Follow us on:
+            <a href="#" class="text-white">Facebook</a> |
+            <a href="#" class="text-white">Twitter</a> |
+            <a href="#" class="text-white">Instagram</a>
+        </p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

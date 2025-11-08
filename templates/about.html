@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About Our Project</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Background and Text Styling */
+        body {
+            background: linear-gradient(135deg, #e0f7fa, #80deea);
+            color: #004d40;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Main Container */
+        .container {
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            margin-top: 30px;
+        }
+
+        /* Section Headings */
+        .section-title {
+            font-weight: 700;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #00695c;
+        }
+
+        /* Project Feature Cards */
+        .feature-card {
+            background: #e0f2f1;
+            border: none;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            background: #80cbc4;
+            color: #ffffff;
+        }
+
+        /* Text on Cards */
+        .feature-card p {
+            font-size: 1rem;
+            color: #004d40;
+        }
+
+        .feature-card:hover p {
+            color: #ffffff;
+        }
+
+        /* About Project Section */
+        .about-project {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Project Introduction -->
+        <h1 class="text-center section-title">About SymptomSense</h1>
+        <p class="about-project">
+            SymptomSense is an innovative project designed to help users quickly and accurately identify potential health
+            conditions based on their symptoms. Using state-of-the-art machine learning and a comprehensive symptom
+            database, our platform aims to make healthcare guidance more accessible to everyone.
+        </p>
+
+        <!-- Key Features Section -->
+        <h2 class="section-title">Key Features</h2>
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card feature-card p-3">
+                    <h5><b>Comprehensive Symptom Analysis</b></h5>
+                    <p>Users can input a range of symptoms to get an accurate prediction of potential conditions, supported by a large database of health data.</p>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card feature-card p-3">
+                    <h5><b>Personalized Health Insights</b></h5>
+                    <p>Our platform provides personalized recommendations, including medications, diet, precautions, and exercises tailored to each predicted condition.</p>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card feature-card p-3">
+                    <h5><b>Easy-to-Use Interface</b></h5>
+                    <p>Designed for user-friendliness, SymptomSense simplifies healthcare guidance with a responsive and accessible interface for users of all ages.</p>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card feature-card p-3">
+                    <h5><b>Reliable Health Data</b></h5>
+                    <p>Our symptom and treatment databases are curated from trusted medical sources, ensuring accurate and up-to-date information for every user.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technologies Section -->
+        <h2 class="section-title">Technologies We Use</h2>
+        <ul>
+            <li><b>Machine Learning:</b> SVC models for predicting diseases based on symptoms.</li>
+            <li><b>Flask Framework:</b> A lightweight Python framework for building robust web applications.</li>
+            <li><b>Bootstrap:</b> A responsive design to ensure a seamless experience across devices.</li>
+            <li><b>Pandas:</b> For efficient data processing and analysis within the healthcare dataset.</li>
+        </ul>
+
+        <!-- Future Goals Section -->
+        <h2 class="section-title">Future Goals</h2>
+        <p class="about-project">
+            We are constantly looking to improve SymptomSense. In the future, we aim to incorporate real-time updates on
+            health trends, integrate telemedicine features, and expand our database to include even more health conditions
+            and symptoms. We hope to make SymptomSense a go-to resource for reliable health information.
+        </p>
+    </div>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
